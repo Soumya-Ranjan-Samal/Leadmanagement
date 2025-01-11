@@ -14,7 +14,7 @@ function Sidebar() {
             <a href="" className="p-2  w-[90%] rounded-r-xl text-center text-blue-400 hover:bg-sky-400 hover:text-white">Onboard</a>
             <a href="" className="p-2  w-[90%] rounded-r-xl text-center text-blue-400 hover:bg-sky-400 hover:text-white">Rejected</a>
         </div>
-        <div className="text-violet-400 font-bold text-sm">@vanurtech.pvt.lt</div>
+        <div className="text-violet-400 font-semibold text-sm p-2">@vanurtech.pvt.lt</div>
     </div>
     </>
   )

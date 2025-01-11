@@ -2,28 +2,61 @@ import { useState } from 'react'
 import Homepagecard from './homepagecard.jsx'
 import '../App.jsx'
 import '../others/home.js'
-
+import '../others/navigatebuttom.css';
 
 
 function Home() {
 
     const clients = [
-        { name: "Aarav Gupta", address: "123 Mumbai Street, Mumbai, Maharashtra", phoneNo: "9876543210", status: "active", businessType: "retail", clientType: "premium" },
-        { name: "Priya Singh", address: "456 Delhi Road, Delhi, Delhi", phoneNo: "8765432109", status: "inactive", businessType: "manufacturing", clientType: "standard" },
-        { name: "Rohan Das", address: "789 Kolkata Avenue, Kolkata, West Bengal", phoneNo: "7654321098", status: "active", businessType: "service", clientType: "premium" },
-        { name: "Simran Kaur", address: "101 Bangalore Boulevard, Bangalore, Karnataka", phoneNo: "6543210987", status: "active", businessType: "technology", clientType: "premium" },
-        { name: "Vikram Patel", address: "202 Chennai Lane, Chennai, Tamil Nadu", phoneNo: "5432109876", status: "inactive", businessType: "retail", clientType: "standard" },
-        { name: "Aditya Mehta", address: "303 Ahmedabad Street, Ahmedabad, Gujarat", phoneNo: "4321098765", status: "pending", businessType: "retail", clientType: "standard" },
-        { name: "Neha Verma", address: "404 Jaipur Road, Jaipur, Rajasthan", phoneNo: "3210987654", status: "interested", businessType: "manufacturing", clientType: "premium" },
-        { name: "Karan Sharma", address: "505 Lucknow Lane, Lucknow, Uttar Pradesh", phoneNo: "2109876543", status: "follow up", businessType: "service", clientType: "standard" },
-        { name: "Ananya Roy", address: "606 Chandigarh Boulevard, Chandigarh, Punjab", phoneNo: "1098765432", status: "conform", businessType: "technology", clientType: "premium" },
-        { name: "Isha Kapoor", address: "707 Bhopal Avenue, Bhopal, Madhya Pradesh", phoneNo: "0198765421", status: "interested", businessType: "retail", clientType: "premium" },
-        { name: "Rajesh Nair", address: "808 Trivandrum Street, Trivandrum, Kerala", phoneNo: "0987654321", status: "pending", businessType: "manufacturing", clientType: "standard" },
-        { name: "Sneha Rao", address: "909 Goa Road, Panaji, Goa", phoneNo: "9876501234", status: "follow up", businessType: "service", clientType: "premium" }
+        { name: "Aarav Gupta", address: "123 Mumbai Street, Mumbai, Maharashtra", phoneNo: "9876543210", status: "follow up", businessType: "retail", clientType: "premium", important: true, offerBudget: 50000, referredBy: "Rajesh Nair", followUpDate: "2025-01-20", confirmDate: null},
+        { name: "Priya Singh", address: "456 Delhi Road, Delhi, Delhi", phoneNo: "8765432109", status: "pending", businessType: "manufacturing", clientType: "standard", important: false, offerBudget: 30000, referredBy: "Neha Verma", followUpDate: null, confirmDate: null },
+        { name: "Rohan Das", address: "789 Kolkata Avenue, Kolkata, West Bengal", phoneNo: "7654321098", status: "interested", businessType: "service", clientType: "premium", important: false, offerBudget: 45000, referredBy: "Vikram Patel", followUpDate: "2025-01-15", confirmDate: null  },
+        { name: "Simran Kaur", address: "101 Bangalore Boulevard, Bangalore, Karnataka", phoneNo: "6543210987", status: "interested", businessType: "technology", clientType: "premium", important: false, offerBudget: 55000, referredBy: "Sneha Rao", followUpDate: "2025-01-18", confirmDate: null  },
+        { name: "Vikram Patel", address: "202 Chennai Lane, Chennai, Tamil Nadu", phoneNo: "5432109876", status: "pending", businessType: "retail", clientType: "standard", important: false, offerBudget: 25000, referredBy: "Aditya Mehta", followUpDate: null, confirmDate: null  },
+        { name: "Aditya Mehta", address: "303 Ahmedabad Street, Ahmedabad, Gujarat", phoneNo: "4321098765", status: "pending", businessType: "retail", clientType: "standard", important: true, offerBudget: 40000, referredBy: "Priya Singh", followUpDate: null, confirmDate: null },
+        { name: "Neha Verma", address: "404 Jaipur Road, Jaipur, Rajasthan", phoneNo: "3210987654", status: "interested", businessType: "manufacturing", clientType: "premium", important: true, offerBudget: 50000, referredBy: "Rohan Das", followUpDate: "2025-01-12", confirmDate: null  },
+        { name: "Karan Sharma", address: "505 Lucknow Lane, Lucknow, Uttar Pradesh", phoneNo: "2109876543", status: "follow up", businessType: "service", clientType: "standard", important: false, offerBudget: 35000, referredBy: "Ananya Roy", followUpDate: "2025-01-22", confirmDate: null },
+        { name: "Ananya Roy", address: "606 Chandigarh Boulevard, Chandigarh, Punjab", phoneNo: "1098765432", status: "conform", businessType: "technology", clientType: "premium", important: true, offerBudget: 60000, referredBy: "Isha Kapoor", followUpDate: null, confirmDate: "2025-01-05"  },
+        { name: "Isha Kapoor", address: "707 Bhopal Avenue, Bhopal, Madhya Pradesh", phoneNo: "0198765421", status: "interested", businessType: "retail", clientType: "premium", important: false, offerBudget: 50000, referredBy: "Rajesh Nair", followUpDate: "2025-01-17", confirmDate: null  },
+        { name: "Rajesh Nair", address: "808 Trivandrum Street, Trivandrum, Kerala", phoneNo: "0987654321", status: "pending", businessType: "manufacturing", clientType: "standard", important: false, offerBudget: 30000, referredBy: "Sneha Rao", followUpDate: null, confirmDate: null  },
+        { name: "Sneha Rao", address: "909 Goa Road, Panaji, Goa", phoneNo: "9876501234", status: "follow up", businessType: "service", clientType: "premium", important: false, offerBudget: 45000, referredBy: "Rohan Das", followUpDate: "2025-01-21", confirmDate: null  },
+        { name: "Aditya Mehta", address: "303 Ahmedabad Street, Ahmedabad, Gujarat", phoneNo: "4321098765", status: "pending", businessType: "retail", clientType: "standard", important: false, offerBudget: 35000, referredBy: "Simran Kaur", followUpDate: null, confirmDate: null },
+        { name: "Neha Verma", address: "404 Jaipur Road, Jaipur, Rajasthan", phoneNo: "3210987654", status: "interested", businessType: "manufacturing", clientType: "premium", important: false, offerBudget: 50000, referredBy: "Vikram Patel", followUpDate: "2025-01-13", confirmDate: null  },
+        { name: "Karan Sharma", address: "505 Lucknow Lane, Lucknow, Uttar Pradesh", phoneNo: "2109876543", status: "follow up", businessType: "service", clientType: "standard", important: true, offerBudget: 40000, referredBy: "Ananya Roy", followUpDate: "2025-01-19", confirmDate: null },
+        { name: "Ananya Roy", address: "606 Chandigarh Boulevard, Chandigarh, Punjab", phoneNo: "1098765432", status: "conform", businessType: "technology", clientType: "premium", important: false, offerBudget: 55000, referredBy: "Isha Kapoor", followUpDate: null, confirmDate: "2025-01-04"  },
+        { name: "Isha Kapoor", address: "707 Bhopal Avenue, Bhopal, Madhya Pradesh", phoneNo: "0198765421", status: "interested", businessType: "retail", clientType: "premium", important: false, offerBudget: 50000, referredBy: "Rajesh Nair", followUpDate: "2025-01-16", confirmDate: null  },
+        { name: "Rajesh Nair", address: "808 Trivandrum Street, Trivandrum, Kerala", phoneNo: "0987654321", status: "pending", businessType: "manufacturing", clientType: "standard", important: false, offerBudget: 30000, referredBy: "Sneha Rao", followUpDate: null, confirmDate: null },
+        { name: "Sneha Rao", address: "909 Goa Road, Panaji, Goa", phoneNo: "9876501234", status: "interested", businessType: "service", clientType: "premium", important: false, offerBudget: 45000, referredBy: "Rohan Das", followUpDate: "2025-01-14", confirmDate: null  }
     ];
     
 
+    const [filter,setFilter]=useState('important');
 
+    function changeFilter(type){
+        setFilter(type);
+    }
+
+    function changecolor(no){
+        let homenav = document.querySelectorAll(".homenav");
+        let scrolview = document.querySelector(".scrolview");
+        for(let i =0 ; i < homenav.length;i++){
+            if(i==no){
+                homenav[i].classList.add("border-b-4")
+                homenav[i].classList.add("border-purple-500")
+            }else{
+                homenav[i].classList.remove("border-b-4")
+                homenav[i].classList.remove("border-purple-500")
+            }
+        }   
+    }
+    
+    const usedClient= clients.filter((client) => {
+        if(filter==="important"){
+            return client.important===true;
+        }
+        return client.status===filter;
+    });
+    
   return (
     <>
     <div className="home h-[100%] w-[80%] bg-white justify-between items-center shadow-lg shadow-blue-200 m-1 mt-0 rounded-lg">
@@ -38,20 +71,26 @@ function Home() {
             </div>
         </div>
         <div className="filter flex justify-evenly border-b border-slate-200 m-6 mb-0">
-            <a href="#" className='p-2 text-base text-purple-500 homenav a'>Important</a>
-            <a href="#" className='p-2 text-base text-purple-500 homenav b'>Pending</a>
-            <a href="#" className='p-2 text-base text-purple-500 homenav c'>Intersted</a>
-            <a href="#" className='p-2 text-base text-purple-500 homenav d' >Follow up</a>
-            <a href="#" className='p-2 text-base text-purple-500 homenav e'>Conform</a>
+            <button className='p-2 text-base text-purple-500 homenav border-b-4 border-purple-500' onClick={()=>{changeFilter("important");changecolor("0")}}>Important</button>
+            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("pending");changecolor("1")}}>Pending</button>
+            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("interested");changecolor("2")}}>Interested</button>
+            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("follow up");changecolor("3")}}>Follow up</button>
+            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("conform");changecolor("4")}}>Conform</button>
         </div>
         <div className="scrolview h-[79%] rounded-lg flex flex-col">
-            {clients.map((ob)=>{return <Homepagecard 
+            {usedClient.map((ob,index)=>{return <Homepagecard 
+                key={index}
                 name={ob.name}
                 address={ob.address}
                 phoneNo={ob.phoneNo}
                 status={ob.status}
                 businessType={ob.businessType}
                 clientType={ob.clientType}
+                important={ob.important}
+                offerBudget={ob.offerBudget}
+                followUpDate={ob.followUpDate}
+                confirmDate={ob.confirmDate}
+                referredBy={ob.referredBy}
             ></Homepagecard>})}
         </div>
     </div>
@@ -59,5 +98,4 @@ function Home() {
   )
 }
 
-
-export default Home
+export default Home;

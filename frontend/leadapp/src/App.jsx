@@ -1,17 +1,18 @@
-import { useState } from 'react'
 import './App.css'
-import Navbar from "./components/navbar.jsx";
-import Sidebar from './components/sidebar.jsx';
-import Home from './components/home.jsx';
+import Homepage from './homePage';
+import Signuporin from './signinorsignup';
+import New from './new';
 
 function App() {
   return (
     <>
-    <Navbar></Navbar>
-    <div className="buttom h-[90%] flex ">
-    <Sidebar></Sidebar>
-    <Home></Home>
-    </div>
+      {/* <body className="bg-cyan-200 font-sans  flex flex-col h-screen fixed w-screen">
+      <Homepage></Homepage>
+      </body> */}
+
+      {/* <Signuporin></Signuporin> */}
+
+      <New></New>
     </>
   )
 }

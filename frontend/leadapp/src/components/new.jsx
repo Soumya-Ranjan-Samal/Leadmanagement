@@ -1,4 +1,5 @@
 import '../App.css';
+import { Link } from 'react-router-dom';
 import Newpagecard from './newpagecard';
 
 
@@ -33,12 +34,13 @@ function Newpage() {
             <div className="heading text-3xl font-bold text-violet-600 ml-4">New</div>
             
             <div className="help ">
-                <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' >Add</button>
-                <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' >Delete</button>
+                <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' ><Link to="/new/add">Add</Link></button>
+                <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' form='deleteMany' >Delete</button>
                 <a href="" className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200'>?</a>
             </div>
         </div>
         <div className="newdata scrolview h-[90%] border border-slate-200 rounded-2xl m-1 mt-4">
+          {/* <form id="deleteMany" action='/new/deleteMany'> */}
         {clients.filter((ob)=>ob.important).map((ob)=>{return <Newpagecard 
                 count={count++}
                 name={ob.name}
@@ -67,6 +69,7 @@ function Newpage() {
                 confirmDate={ob.confirmDate}
                 referredBy={ob.referredBy}
             ></Newpagecard>})}
+            {/* </form> */}
         </div>
         </div>
     </>

@@ -1,5 +1,5 @@
-import './App.css'
-import  image  from "./images/sign.jpg";
+import '../App.css'
+import  image  from "../images/sign.jpg";
 import { useState } from 'react';
 
 function Signuporin() {

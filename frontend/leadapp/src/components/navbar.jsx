@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../App.jsx'
 
 function Navbar() {
@@ -14,7 +15,7 @@ function Navbar() {
 
         </div>
         <div className="opertions mr-12 ">
-            <a href="" className=" rounded-md p-2 text-white pl-4 pr-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 ">Login</a>
+            <a href="" className=" rounded-md p-2 text-white pl-4 pr-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 "><Link to='/user'>Login</Link></a>
         </div>
     </div>
     </>

@@ -1,9 +1,9 @@
-import './App.css';
-import Navbar from './components/navbar';
-import Sidebar from './components/sidebar';
-import Newpage from './components/new';
-import leftarrow from "./images/leftarrow.png";
-import rightarrow from "./images/rightarrow.png";
+import '../App.css';
+import Navbar from '../components/navbar';
+import Sidebar from '../components/sidebar';
+import Newpage from '../components/new';
+import leftarrow from "../images/leftarrow.png";
+import rightarrow from "../images/rightarrow.png";
 
 
 function New() {

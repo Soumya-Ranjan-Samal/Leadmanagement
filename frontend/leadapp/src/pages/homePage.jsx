@@ -1,9 +1,9 @@
-import './App.css'
-import Navbar from "./components/navbar.jsx";
-import Sidebar from './components/sidebar.jsx';
-import Home from './components/home.jsx';
-import leftarrow from "./images/leftarrow.png";
-import rightarrow from "./images/rightarrow.png";
+import '../App.css'
+import Navbar from "../components/navbar.jsx";
+import Sidebar from '../components/sidebar.jsx';
+import Home from '../components/home.jsx';
+import leftarrow from "../images/leftarrow.png";
+import rightarrow from "../images/rightarrow.png";
 
 function Homepage() {
 
@@ -27,6 +27,7 @@ function openmenu(){
 
   return (
     <>
+    <body className="bg-cyan-200 font-sans  flex flex-col h-screen fixed w-screen">
     <Navbar></Navbar>
     <div className="buttom h-[90%] flex">
                     <div className="menu fixed z-10 font-bold text-4xl shadow-lg shadow-blue-100" onClick={()=>openmenu()}>
@@ -35,6 +36,7 @@ function openmenu(){
     <Sidebar open={"home"}></Sidebar>
     <Home></Home>
     </div>
+    </body>
     </>
   )
 }

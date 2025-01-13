@@ -32,6 +32,7 @@ function Status(props){
 function Homepagecard(props) {
 
     const [show,useShow] = useState(false);
+    const [edit,setEdit] = useState(false);
 
   return (
     <>
@@ -74,11 +75,75 @@ function Homepagecard(props) {
                         </div>
                     </div>
                     <div className="row2 flex justify-evenly mt-[4%] text-md font-semibold">
-                        <a href="" className='rounded-md p-2 text-white w-[40%] text-center bg-cyan-500 shadow-lg shadow-cyan-500/50'>Edit</a>
+                        <button className='rounded-md p-2 text-white w-[40%] text-center bg-cyan-500 shadow-lg shadow-cyan-500/50' onClick={()=>{setEdit(true)}}>Edit</button>
                         <a href="" className='rounded-md p-2 text-white w-[40%] text-center bg-red-500 shadow-lg shadow-red-400'>Delete</a>
                     </div>
                 </div>
             </div>
+
+
+            {   edit &&
+                <div className="viewbody fixed z-20 flex h-dvh w-full flex justify-center items-center -left-[0%] -top-[0%]">
+                <form action="" className='w-[60%] view'>
+                <div className="view border border-slate-400 p-4 bg-white h-[72%] w-[100%] mb-[3%] ml-[1%] rounded-xl text-slate-500">
+                    <button onClick={()=>{setEdit(false)}} className='px-3 py-1.5 hover:text-red-600 hover:bg-white rounded-xl  shadow-red-500 shadow bg-red-600 text-white relative -left-4 -top-4 animate-bounce'>&#x2718;</button>
+                    <div className="row1 flex flex-col">
+                        <label htmlFor="name" className='text-slate-700'>Name:</label>
+                        <input type="text" defaultValue={props.name} className='border border-slate-300 p-1.5 rounded-xl my-2' id='name' />
+                    </div>
+                    <div className="row2 flex w-[100%]">
+                        <div className="col1 flex flex-col w-1/2 pr-1">
+                            <label htmlFor="phoneno"className='text-slate-700' >Phone no:</label>
+                            <input type="text"  defaultValue={props.phoneNo} className='text-blue-600 border border-slate-300 p-1.5 rounded-xl my-2' id='phoneno' />
+                        </div>
+                        <div className="col2 flex flex-col w-1/2 pl-1">
+                            <label htmlFor="business" className='text-slate-700'>Business Type:</label>
+                            <input type="text" defaultValue={props.businessType} className='border border-slate-300 p-1.5 rounded-xl my-2' id='business' />
+                        </div>
+                    </div>
+                    <div className="row3 flex w-[100%]">
+                        <div className="col1 flex flex-col w-1/2 pr-1">
+                            <label htmlFor="clientType" className='text-slate-700' >Client Type:</label>
+                            <input type="text"  defaultValue={props.clientType} className='border border-slate-300 p-1.5 rounded-xl my-2' id='clientType' />
+                        </div>
+                        <div className="col2 flex flex-col w-1/2 pl-1">
+                            <label htmlFor="offerBudget" className='text-slate-700'>Offered Budget:</label>
+                            <input type="text" defaultValue={props.offerBudget ? props.offerBudget: "Not set"} className='border border-slate-300 p-1.5 rounded-xl my-2' id='offerBudget' />
+                        </div>
+                    </div>
+                    <div className="row4 flex flex-col">
+                        <label htmlFor="address" className='text-slate-700'>Address:</label>
+                        <input type="text" defaultValue={props.address?props.address:"Not set"} className='border border-slate-300 p-1.5 rounded-xl my-2' id='address' />
+                    </div>
+                    <div className="row5 flex ">
+                        <div className="col1 widthedit flex flex-col w-1/3 pl-1">
+                            <label htmlFor="confirmDate" className='text-slate-700'>Confirm Date:</label>
+                            <input type="date" defaultValue={props.confirmDate} className='border border-slate-300 p-1.5 rounded-xl my-2' id='confirmDate' />
+                        </div>
+                        <div className="col2 widthedit flex flex-col w-1/3 pl-1">
+                            <label htmlFor="followUpDate" className='text-slate-700'>Follow Up Date:</label>
+                            <input type="date" defaultValue={props.followUpDate} className='border border-slate-300 p-1.5 rounded-xl my-2' id='followUpDate' />
+                        </div>
+                        <div className="col3 widthedit flex flex-col w-1/3 pl-1">
+                            <label htmlFor="referredBy" className='text-slate-700'>Referrd By:</label>
+                            <input type="text" defaultValue={props.referredBy? props.referredBy: "No Data"} className='border border-slate-300 p-1.5 rounded-xl my-2' id='referredBy' />
+                        </div>
+                    </div>
+                    
+                    <div className="row2 flex justify-between mt-[4%] text-md font-semibold">
+                        <div className="important">
+
+                            <input type="checkbox" className='h-4 w-4 ml-4' checked={props.important}/>
+                            <label htmlFor="important"><span className='text-red-700 ml-1'>!Important</span></label>
+                            
+                        </div>
+                        <a href="" className=' rounded-md p-2 text-white w-[40%] text-center bg-cyan-500 shadow-lg shadow-cyan-500/50'>Save Changes</a>
+                        {/* <a href="" className='rounded-md p-2 text-white w-[40%] text-center bg-red-500 shadow-lg shadow-red-400'>Delete</a> */}
+                    </div>
+                </div>
+                </form>
+            </div>
+            }
             </>
         }
     </>

@@ -63,10 +63,6 @@ function Home() {
         let s = document.querySelector("input");
         let val = s.value;
         setSearch(val);
-        // console.log(s.value);
-        // for(let i = 0 ; i<clients.length;i++){
-        //     console.log(clients[i].name.trim().replace(" ","").toLowerCase().includes(s.value));
-        // }
     }
 
     if(search.length>0){
@@ -83,7 +79,7 @@ function Home() {
             <div className="search">
                 <input onChange={()=>{
                 changeSearch();
-                }} type="text" id='search' placeholder='Search here' className="border searchinput border-slate-200 rounded-full m-2 p-2 w-96"/>
+                }} type="text" id='search' placeholder='Search here by Name' className="border searchinput border-slate-200 rounded-full m-2 p-2 w-96"/>
                 <label htmlFor="search" className=" searchbut py-2 px-4 bg-cyan-500 rounded-full  text-white hover:shadow-lg hover:shadow-cyan-500/50"><button>Search</button></label>
             </div>
             <div className="help">

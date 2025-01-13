@@ -194,14 +194,19 @@ input{
     transition: all 0.5s ease-in-out 0s;
     background-color: white;
     left: 0%;
-    top: 14%;
+    top: 11%;
     padding: 7.5px 2px;
     height: 40px;
     width: 28px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
-  
+  .row5{
+    flex-direction: column;
+  }
+  .widthedit{
+    width: 100%;
+  }
   .openclosebut{
     object-fit: contain;
     height: 25px;

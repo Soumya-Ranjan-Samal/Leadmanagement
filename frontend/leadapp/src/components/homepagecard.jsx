@@ -81,6 +81,7 @@ function Homepagecard(props) {
             alert(props.name+" Has been deleted")
             navigate("/")
         }
+        // console.log(formData.important);
 
   return (
     <>

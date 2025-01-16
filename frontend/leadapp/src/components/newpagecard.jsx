@@ -150,8 +150,8 @@ function Newpagecard(props) {
                                 <label htmlFor="interested" className='text-green-400 mx-2'>interested</label>
                             </div>
                             <div className="op">
-                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'conform'} value='conform' id='conform' />
-                                <label htmlFor="conform" className='text-cyan-400 mx-2'>conform</label>
+                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'confirm'} value='conform' id='conform' />
+                                <label htmlFor="conform" className='text-cyan-400 mx-2'>confirm</label>
                             </div>
                         </div>
                     

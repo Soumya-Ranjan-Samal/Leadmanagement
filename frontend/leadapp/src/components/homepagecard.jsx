@@ -23,8 +23,8 @@ function Status(props){
         return (<span className='text-green-400'>Interested</span>)
     }else if(props.status=="on board"){
         return (<span className='text-blue-400'>On board</span>)
-    }else if(props.status=="conform"){
-        return (<span className='text-teal-400'>Conform</span>)
+    }else if(props.status=="confirm"){
+        return (<span className='text-teal-400'>Confirm</span>)
     }else{
         return (<span>Un Known</span>)
     }
@@ -85,16 +85,16 @@ function Homepagecard(props) {
 
   return (
     <>
-        <div className="p-4 homepagecard w-[97%] m-4 mb-0 rounded-lg hover:shadow-lg flex items-center text-slate-500 border md:flex-row flex-col" onClick={()=> useShow(true)}>
-            <div className="col1 homecardcol ml-[10%]">
+        <div className="p-4 homepagecard w-[97%] m-4 mb-0 rounded-lg hover:shadow-lg flex justify-evenly items-center text-slate-500 border md:flex-row flex-col" onClick={()=> useShow(true)}>
+            <div className="col1 homecardcol w-40 md:w-64">
                 Name&nbsp;&nbsp;&nbsp;&nbsp;  : {props.name} <br /><br />
                 Address&nbsp;: {props.address.length<=15?props.address:props.address.slice(0,12)+"..."}
             </div>
-            <div className="col2 homecardcol ml-[10%]">
+            <div className="col2 homecardcol w-40 md:w-64">
                 Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <Status status={props.status}></Status> <br /><br />
                 Phone no.&nbsp;: {props.phoneNo}
             </div>
-            <div className="col3 homecardcol ml-[10%] mr-[10%]">
+            <div className="col3 homecardco w-40 md:w-64 md:m-0 my-4">
                 Business type&nbsp;: {props.businessType} <br /><br />
                 Client type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {props.clientType}
             </div>

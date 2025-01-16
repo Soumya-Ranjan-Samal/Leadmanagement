@@ -11,9 +11,18 @@ function Home() {
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const data = await fetch('http://localhost:8080/leads');
+            const data = await fetch('http://localhost:8080/leads',{
+                headers:{
+                    'Authorization': `Bearer ${localStorage.getItem("myToken")}`
+                }
+            });
             const jsonData = await data.json();
-            setClients(jsonData)
+            if(jsonData.error == "doLogin"){
+                alert("Please log in to access");
+                navigate("/user");
+            }else{
+                setClients(jsonData)
+            }
         }
         fetchData()
     },[])
@@ -81,7 +90,7 @@ function Home() {
             <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("pending");changecolor("1")}}>Pending</button>
             <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("interested");changecolor("2")}}>Interested</button>
             <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("follow up");changecolor("3")}}>Follow up</button>
-            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("conform");changecolor("4")}}>Conform</button>
+            <button className='p-2 text-base text-purple-500 homenav' onClick={()=>{changeFilter("confirm");changecolor("4")}}>Confirm</button>
         </div>
         }{
             search.length>0 &&

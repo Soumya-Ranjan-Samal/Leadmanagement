@@ -4,6 +4,9 @@ import Signuporin from './pages/signinorsignup';
 import New from './pages/new';
 import Addpage from './pages/addpage';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Followup from './pages/followup';
+import Important from './pages/important';
+import Confirm from './pages/confirm';
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
           <Route path='/new' element={<New/>}/>
           <Route path='/user' element={<Signuporin/>}/>
           <Route path='/new/add' element={<Addpage/>}/>
+          <Route path='/followup'element={<Followup/>}/>
+          <Route path='/important' element={<Important/>}/>
+          <Route path='/confirm' element={<Confirm/>}/>
       </Routes>
     </BrowserRouter>
     </>

@@ -19,9 +19,23 @@ function Add() {
         try { 
             const response = await fetch('http://localhost:8080/leads/new/add',{ 
             method: 'POST', 
-            headers: { 'Content-Type': 'application/json', }, 
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("myToken")}`
+             }, 
             body: JSON.stringify(formData), 
-        }); if (response.ok) { 
+        }); 
+
+        const jsonData = await response.json();
+
+        if(jsonData.error == "doLogin"){
+            alert("Please log in to access");
+            navigate("/user");
+        }else{
+            setClients(jsonData)
+        }
+        
+        if (response.ok) { 
             console.log('Lead added successfully');
             navigate("/");
         } else { 
@@ -99,8 +113,8 @@ function Add() {
                                 <label htmlFor="interested" className='text-green-400 mx-2'>interested</label>
                             </div>
                             <div className="op">
-                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'conform'} value='conform' id='conform' />
-                                <label htmlFor="conform" className='text-cyan-400 mx-2'>conform</label>
+                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'confirm'} value='conform' id='conform' />
+                                <label htmlFor="confirm" className='text-cyan-400 mx-2'>confirm</label>
                             </div>
                         </div>
                     

@@ -31,8 +31,6 @@ function Add() {
         if(jsonData.error == "doLogin"){
             alert("Please log in to access");
             navigate("/user");
-        }else{
-            setClients(jsonData)
         }
         
         if (response.ok) { 

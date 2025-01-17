@@ -54,7 +54,7 @@ Leadrouter.get('/confirm', Authorization,wrapAsync(async (req,res,next)=>{
 Leadrouter.post("/new/add", Authorization,validate,wrapAsync(async (req,res,next)=>{
     let user = Lead(req.body);
     let result = await user.save();
-    res.send(result);
+    res.send({ok: "success"});
 }));
 
 Leadrouter.patch("/update/:id", Authorization,validate,wrapAsync(async (req,res)=>{

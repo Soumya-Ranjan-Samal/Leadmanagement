@@ -34,7 +34,7 @@ function Signuporin() {
                     alert(format.error);
                 }else{
                     alert(formData.username+" sign up successfull sign in to proccedd");
-                    navigate("/user");
+                    navigate("/");
                 }
             }
             Signup();
@@ -53,7 +53,7 @@ function Signuporin() {
                 if(format.error){
                     alert(format.error);
                 }else{
-                    navigate("/");
+                    navigate("/home");
                 }
             }
             Signin();

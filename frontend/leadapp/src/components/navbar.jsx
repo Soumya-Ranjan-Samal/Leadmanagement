@@ -27,7 +27,7 @@ function Navbar() {
 
   function logoutHandeler(){
       localStorage.removeItem('myToken');
-      navigate("/user");
+      navigate("/");
   }
 
   return (
@@ -43,7 +43,7 @@ function Navbar() {
         </div>
         <div className="opertions mr-12 ">
           {!logout &&
-            <Link to="/user"><a href="" className="loginbut rounded-md p-2 text-white pl-4 pr-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 ">Login</a></Link>
+            <Link to="/"><a href="" className="loginbut rounded-md p-2 text-white pl-4 pr-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 ">Login</a></Link>
           }
           {
             logout && 

@@ -19,7 +19,7 @@ function Confirmpage() {
             const jsonData = await data.json();
             if(jsonData.error == "doLogin"){
                 alert("Please log in to access");
-                navigate("/user");
+                navigate("/");
             }else{
                 setClients(jsonData)
             }

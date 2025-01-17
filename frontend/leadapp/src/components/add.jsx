@@ -113,7 +113,7 @@ function Add() {
                                 <label htmlFor="interested" className='text-green-400 mx-2'>interested</label>
                             </div>
                             <div className="op">
-                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'confirm'} value='conform' id='conform' />
+                                <input type="radio" name='status' onChange={handleChange} checked={formData.status === 'confirm'} value='confirm' id='confirm' />
                                 <label htmlFor="confirm" className='text-cyan-400 mx-2'>confirm</label>
                             </div>
                         </div>

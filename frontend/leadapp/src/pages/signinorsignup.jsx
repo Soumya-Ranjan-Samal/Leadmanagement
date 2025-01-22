@@ -15,6 +15,23 @@ function Signuporin() {
         password: ""
     });
 
+    async function check(){
+        const result = await fetch("http://localhost:8080/islogin",{
+          headers:{
+            'Authorization': `Bearer ${localStorage.getItem("myToken")}`
+          }
+        });
+        
+        const format = await result.json();
+
+        if(format.error){
+          console.log("do log in!");
+        }else{
+          navigate("/home");
+        }
+      }
+    check();
+
     function handelChange(e){
         const {name, value} = e.target;
         setFormData({...formData,[name]: value});

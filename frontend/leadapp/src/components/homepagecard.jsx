@@ -85,7 +85,7 @@ function Homepagecard(props) {
             }
             });
             alert(props.name+" Has been deleted")
-            navigate("/")
+            navigate("/home")
         }
         // console.log(formData.important);
 

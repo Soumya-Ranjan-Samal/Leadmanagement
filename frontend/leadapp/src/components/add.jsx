@@ -35,7 +35,7 @@ function Add() {
         
         if (response.ok) { 
             console.log('Lead added successfully');
-            navigate("/");
+            navigate("/home");
         } else { 
             console.error('Failed to add lead'); 
         } } catch (error) { 

@@ -73,6 +73,11 @@ Leadrouter.delete("/delete/:id", Authorization,wrapAsync(async (req,res)=>{
     res.send(result);
 }));
 
+Leadrouter.get("/onboard", Authorization,wrapAsync(async (req,res)=>{
+    let result = await Lead.aggregate([{$group : {_id : ""}}])
+    res.send(result);
+}));
+
 // < multiple delete route >
 
 // Leadrouter.delete("/deleteMany",wrapAsync(async (req,res)=>{

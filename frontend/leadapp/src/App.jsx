@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Followup from './pages/followup';
 import Important from './pages/important';
 import Confirm from './pages/confirm';
+import Onboard from './pages/onboard';
 
 function App() {
   return (
@@ -20,8 +21,10 @@ function App() {
           <Route path='/followup'element={<Followup/>}/>
           <Route path='/important' element={<Important/>}/>
           <Route path='/confirm' element={<Confirm/>}/>
+          <Route path='/onboard' element ={<Onboard/>}/>
       </Routes>
     </BrowserRouter>
+     
     </>
   );
 }

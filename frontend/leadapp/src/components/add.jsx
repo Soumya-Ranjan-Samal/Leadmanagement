@@ -30,7 +30,7 @@ function Add() {
 
         if(jsonData.error == "doLogin"){
             alert("Please log in to access");
-            navigate("/user");
+            navigate("/");
         }
         
         if (response.ok) { 

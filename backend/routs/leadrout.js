@@ -78,6 +78,38 @@ Leadrouter.get("/onboard", Authorization,wrapAsync(async (req,res)=>{
     res.send(result);
 }));
 
+Leadrouter.get("/count", Authorization,wrapAsync(async (req,res)=>{
+    try{
+        const data=[{
+            status: "Pending",
+            count: 0
+        },{
+            status: "Follow up",
+            count: 0
+        },{
+            status: "Interested",
+            count: 0
+        },{
+            status: "Confirm",
+            count: 0
+        }];
+    const leads = await Lead.find({})
+    for(let i =0 ; i<leads.length;i++){
+        if(leads[i].status=="pending")
+            data[0].count++;
+        else if(leads[i].status=="follow up")
+            data[1].count++;
+        else if(leads[i].status=="interested")
+            data[2].count++;
+        else if(leads[i].status=="confirm")
+            data[3].count++;
+    }
+    res.send(data);
+    }catch(error){
+        res.send({error: "Something Went Wrong, try leter."});
+    }
+}));
+
 // < multiple delete route >
 
 // Leadrouter.delete("/deleteMany",wrapAsync(async (req,res)=>{

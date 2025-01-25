@@ -1,17 +1,16 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
-import Newpagecard from './newpagecard';
+import Onboardcard from './onboardcard';
 import { useState,useEffect } from 'react';
 
 
-function Onboard() {
-  let count = 1; 
+function Onboard() { 
 
-  const [clients,setClients]=useState([]);
+  const [total,settotal]=useState([]);
 
     useEffect(()=>{
         const fetchData = async ()=>{
-            const data = await fetch('http://localhost:8080/leads',{
+            const data = await fetch('http://localhost:8080/leads/count',{
                 headers:{
                     'Authorization': `Bearer ${localStorage.getItem("myToken")}`
                 }
@@ -19,12 +18,13 @@ function Onboard() {
             const jsonData = await data.json();
             if(jsonData.error == "doLogin"){
                 alert("Please log in to access");
-                navigate("/user");
+                navigate("/");
             }else{
-                setClients(jsonData)
+                settotal(jsonData);
+                console.log(total);
             }
         }
-        fetchData()
+        fetchData();
     },[]);
 
 
@@ -37,12 +37,18 @@ function Onboard() {
             
             <div className="help ">
                 <Link to="/new/add"><button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' >Add</button></Link>
-                <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' form='deleteMany' >Delete</button>
+                {/* <button className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200' form='deleteMany' >Delete</button> */}
                 <a href="" className='py-2 px-4 bg-blue-400 rounded-lg hover:bg-blue-500 mx-2 text-white shadow-md mr-2 shadow-blue-200'>?</a>
             </div>
         </div>
         <div className="newdata scrolview h-[90%] border border-slate-200 rounded-2xl m-1 mt-4" >
-
+            <div className="mainonboard">
+                {
+                    total.map((el)=>{
+                        return <Onboardcard status={el.status} count={el.count}></Onboardcard>
+                    })
+                }
+            </div>
         </div>
         </div>
     </>

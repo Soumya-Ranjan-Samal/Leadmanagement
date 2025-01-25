@@ -34,7 +34,7 @@ function Onboardpage() {
             <div className="menu fixed z-10 font-bold text-4xl shadow-lg shadow-blue-100" onClick={()=>openmenu()}>
                 <img src={rightarrow} className='openclosebut' alt="" />
             </div>
-        <Sidebar open={"new"}></Sidebar>
+        <Sidebar open={"onboard"}></Sidebar>
        <Onboard></Onboard>
         </div>
     </body>

@@ -96,7 +96,9 @@
   }
 }
 
-@keyframes colorchange {
+
+
+ @keyframes colorchange {
   10%{
     background-color: rgb(110 231 183 / var(--tw-bg-opacity, 1));
   }
@@ -128,6 +130,14 @@
     background-color: rgb(244 114 182 / var(--tw-bg-opacity, 1));
   }
 } */
+
+.mainonboard{
+  height: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 img{
   position: fixed;

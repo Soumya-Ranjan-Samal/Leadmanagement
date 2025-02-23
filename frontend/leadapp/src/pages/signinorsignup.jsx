@@ -7,10 +7,11 @@ function Signuporin() {
 
     const navigate = useNavigate();
 
-    const [signup,setSignup] = useState(false);
+    const [adminlogin,setSignup] = useState(false);
+    const [format,setFormat] = useState(true);
     
     const [formData,setFormData] = useState({
-        username: "",
+        adminpin: "",
         email: "",
         password: ""
     });
@@ -39,19 +40,20 @@ function Signuporin() {
 
     function handel(item){
         item.preventDefault();
-        if(signup){
+        if(adminlogin){
             const Signup = async ()=>{
-                const result = await fetch("http://localhost:8080/user/signup",{
+                const result = await fetch("http://localhost:8080/admin/signin",{
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData)
                 });
-                const format = await result.json();
-                if(format.error){
-                    alert(format.error);
+                const data = await result.json();
+                if(data.error){
+                    alert(data.error);
                 }else{
                     alert(formData.username+" sign up successfull sign in to proccedd");
-                    navigate("/");
+                    localStorage.setItem('myToken',data.token);
+                    navigate("/home");
                 }
             }
             Signup();
@@ -65,10 +67,10 @@ function Signuporin() {
                         password: formData.password
                     })
                 });
-                const format = await result.json();
+                const data = await result.json();
                 localStorage.setItem('myToken',format.token);
-                if(format.error){
-                    alert(format.error);
+                if(data.error){
+                    alert(data.error);
                 }else{
                     navigate("/home");
                 }
@@ -82,15 +84,16 @@ function Signuporin() {
             let form = document.querySelector(".form");
             let submit = document.querySelector(".submit");
             let h1 = document.querySelector('.h1');
-            if(submit.innerText == "Sign In"){
+            if(format){
                 form.style.opacity="0";
                 full.style.height = "24rem"
                 document.querySelector(".s").innerText = "Sign In";
-                document.querySelector(".ms").innerHTML = "Already have an account. ";
-                h1.innerText=submit.innerText = "Sign Up";
+                document.querySelector(".ms").innerHTML = "Sign in normal. ";
+                h1.innerText=submit.innerText = "Sign In";
                 setTimeout(()=>{
                     form.style.opacity="1";
                 },500);
+                setFormat(false)
                     setSignup(true);
             }else{
                 form.style.opacity="0";
@@ -98,11 +101,12 @@ function Signuporin() {
                 let s = document.querySelector(".s");
                 let ms = document.querySelector(".ms");
                 h1.innerText=submit.innerText = "Sign In"
-                s.innerText = "Sign Up";
-                ms.innerText = "Don't have an account? ";
+                s.innerText = "Sign In";
+                ms.innerText = "Sign in as Admin? ";
                 setTimeout(()=>{
                     form.style.opacity="1";
                 },500);
+                setFormat(true)
                 setSignup(false);
             }
             
@@ -134,10 +138,10 @@ function Signuporin() {
            <div className="signform p-4 z-10 rounded-3xl mt-[10%] text-white">
                 <form action="" className='form'>
                 <h1 className='h1 text-xl font-semibold text-center'>Sign In</h1>
-                {   signup &&
+                {   adminlogin &&
                 <div className="username flex flex-col my-2">
-                    <label htmlFor="username" className='text-white opacity-100 m-1'>UserName</label>
-                    <input className='w-80 p-2 rounded-3xl opacity-100 text-black' type="text" id='username' name='username' placeholder='Enter your Username' value={formData.username} onChange={handelChange} required />
+                    <label htmlFor="username" className='text-white opacity-100 m-1'>Admin pin*</label>
+                    <input className='w-80 p-2 rounded-3xl opacity-100 text-black' type="password" id='username' name='adminpin' placeholder='Enter your Username' value={formData.adminpin} onChange={handelChange} required />
                 </div>
                 }
                 
@@ -153,7 +157,7 @@ function Signuporin() {
                 </div>
 
                 <div className="otheroption text-center my-2">
-                    <span className='ms'>Don't have an account? </span><button className='text-blue-300 s' onClick={change}>Sign up</button>
+                    <span className='ms'>Sign in as Admin? </span><button className='text-blue-300 s' onClick={change}>Sign in</button>
                 </div>
                 <div className="button my-2 flex justify-center">
                     <button className='submit bg-blue-500 shadow-lg shadow-blue-500/50  w-[90%] py-2 rounded-3xl' onClick={handel}>Sign In</button>

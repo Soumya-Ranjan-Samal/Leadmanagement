@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const {Leadrouter} = require("./routs/leadrout.js");
 const {Userrouter} = require("./routs/userrout.js");
+const {Projectroute} = require("./routs/teamroute.js");
+const {Adminroute, adminroute} = require("./routs/adminroute.js");
 const cors = require("cors");
 const SECRET_KEY = "ILoveYou3000";
 const jwt = require("jsonwebtoken");
@@ -35,6 +37,8 @@ app.get("/islogin",(req,res)=>{
 
 app.use("/leads",Leadrouter);
 app.use("/user",Userrouter);
+app.use("/project",Projectroute);
+app.use("/admin",adminroute);
 
 app.use("/",(req,res)=>{
     res.send("root");

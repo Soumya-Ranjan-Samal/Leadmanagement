@@ -8,6 +8,10 @@ import Followup from './pages/followup';
 import Important from './pages/important';
 import Confirm from './pages/confirm';
 import Onboard from './pages/onboard';
+import Createteam from './pages/createteam';
+import Allteams  from './pages/allteam';
+import Userupdation from './pages/userupdation';
+import Adduser from "./pages/adduser.jsx";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
           <Route path='/important' element={<Important/>}/>
           <Route path='/confirm' element={<Confirm/>}/>
           <Route path='/onboard' element ={<Onboard/>}/>
+          <Route path='/admin/teams/add' element={<Createteam/>} />
+          <Route path='/admin/teams' element={<Allteams/>} />
+          <Route path='/admin/users' element={<Userupdation/>} />
+          <Route path='/admin/users/add'element={<Adduser/>}/>
       </Routes>
     </BrowserRouter>
      

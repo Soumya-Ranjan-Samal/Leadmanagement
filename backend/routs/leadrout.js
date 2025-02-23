@@ -2,7 +2,7 @@ const express = require("express");
 const {Lead} = require("../models/lead.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const leadValidate = require("../validate/leadvalidate.js");
-const Authorization = require("../utils/authorization.js");
+const {Authorization} = require("../utils/authorization.js");
 
 async function validate(req,res,next){
     try {

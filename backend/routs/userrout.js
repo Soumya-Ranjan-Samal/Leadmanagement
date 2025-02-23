@@ -5,6 +5,7 @@ const {userSignInValidate,userSignUpValidate} = require("../validate/uservalidat
 const Userrouter = express.Router({mergeParams: true});
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const {AuthorizationAdmin} = require("../utils/authorization.js");
 
 const SECRET_KEY = "ILoveYou3000";
 
@@ -33,20 +34,26 @@ async function signUpValidate(req,res,next){
      }
 }
 
-Userrouter.post("/signup", signUpValidate,wrapAsync(async (req,res,next)=>{
+Userrouter.post("/signup", AuthorizationAdmin, signUpValidate,wrapAsync(async (req,res,next)=>{
     console.log("signup");
-    const {username, email, password}=req.body;
+    let {username, email, password, exp, pastprojects}=req.body;
+    console.log(req.body)
     const checkemailduplicate = await User.findOne({email: email});
     if(checkemailduplicate){
         return res.send({error: "email is already registered"});
     }
+    exp = parseInt(exp);
+    pastprojects=parseInt(pastprojects);
     const strongpassword = await bcrypt.hash(password,12);
     const user = User({
         username,
         email,
+        exp,
+        pastproject: pastprojects,
         password: strongpassword
     });
     const result = await user.save();
+    
     if(!result){
         res.status(500).send({error: 'Sign up failed'})
     }
@@ -59,6 +66,7 @@ Userrouter.post("/signin", signInValidate,wrapAsync(async (req,res,next)=>{
     console.log(req.body);
     const {email, password}=req.body;
     const checkuser = await User.findOne({email: email});
+    console.log(checkuser);
     if(!checkuser){
         res.send({error: "No user found!"});
     }
@@ -72,5 +80,58 @@ Userrouter.post("/signin", signInValidate,wrapAsync(async (req,res,next)=>{
     console.log("user logged in");
     res.send({token,success:"login successfull"});
 }));
+
+
+Userrouter.get("/", AuthorizationAdmin,async (req,res,next)=>{
+    const result = await User.find();
+    if(result){
+        res.send(result);
+    }else{
+        res.send({
+            error: "Something went wrong",
+        });
+    }
+});
+
+Userrouter.get("/avail", AuthorizationAdmin,async (req,res,next)=>{
+    const result = await User.find({working: 0});
+    if(result){
+        res.send(result);
+    }else{
+        res.send({
+            error: "Something went wrong",
+        });
+    }
+})
+
+
+Userrouter.post("/update/:id", AuthorizationAdmin,async (req,res)=>{
+    try{
+        let data = req.body;
+        let id = req.params.id;
+        let working = data.working=="1"? 1 : 0;
+        let result = await User.findOneAndUpdate({_id: id},{username: data.username, email: data.email, exp: data.exp, pastproject: data.pastproject, working: working});
+        res.send({
+            success: "user updated successfuly",
+        });
+    }catch(e){
+        res.send({
+            error: "some error occured",
+        });
+    } 
+});
+
+Userrouter.post("/delete/:id", AuthorizationAdmin,async (req,res)=>{
+    let result = await User.deleteOne({_id: req.params.id});
+    if(result){
+        res.send({
+            success: "User deleted",
+        });
+    }else{
+        res.send({
+            error: "Some error occured",
+        });
+    }
+});
 
 module.exports={Userrouter};

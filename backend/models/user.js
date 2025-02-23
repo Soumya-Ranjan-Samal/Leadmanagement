@@ -12,6 +12,18 @@ const userSchema = mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    exp: {
+        type: Number,
+        default: 0
+    },
+    pastproject: {
+        type: Number,
+        default: 0
+    },
+    working: {
+        type: Number,
+        default: 0
     }
 });
 

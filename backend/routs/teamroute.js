@@ -4,15 +4,39 @@ const express =require("express");
 const Projectroute = express.Router({mergeParams: true});
 const {AuthorizationAdmin} = require("../utils/authorization.js");
 
-Projectroute.post("/analyze_AI",AuthorizationAdmin,(req,res,next)=>{
-    //AI analyze
+Projectroute.post("/analyze_AI",AuthorizationAdmin,async (req,res,next)=>{
+    form = req.body;
+    let count = await form.selectedUsers.length;
+    let exp=0;
+    let pastpro=0;
+    for(let i=0;i<count;i++){
+        temp = await User.findOne({_id: form.selectedUsers[i]})
+        exp+=temp.exp;
+        pastpro+=temp.pastproject;
+    } 
+
+    exp = exp/count;
+    pastpro = pastpro/count;
+    let gift = {
+        teamsize: count,
+        complexity: parseInt(form.complexity),
+        experience: exp,
+        pastprojectcount: pastpro,
+    }
+
+
+    let result = await fetch("http://127.0.0.1:5000/predict",{
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(gift)
+    });
     
+    let data = await result.json();
     res.send({
         success: "Got the data",
-        data: {
-            feasible: 1,
-            timerequired: 5,
-        }
+        data,
     });
 });
 

@@ -61,10 +61,14 @@ function Addteam() {
                 })
                 let parsed = await data.json();
                 if(data.ok){
-                    let h1 = `<h1 className='reportf font-semibold text-white'>&#62;&#62; status: ${parsed.data.feasible? "Ok" : "Not ok"}</h1>`
-                    let h2 = `<h2 className='reportt font-semibold  text-white'>&#62;&#62; Duration: ${parsed.data.timerequired/4+" Months estimated"}...</h2>`
+                    let h1 = `<h1 className='reportf font-semibold text-white'>&#62;&#62; status: ${parsed.data.feasibility}</h1>`
+                    let h2 = `<h2 className='reportt font-semibold  text-white'>&#62;&#62; Duration: ${parsed.data.estimated_time/30+" Months estimated"}...</h2>`
+                    let h3 = `<h1 className='reportf font-semibold text-white'>&#62;&#62; Cost: ${parsed.data.estimated_cost}</h1>`
+                    let h4 = `<h2 className='reportt font-semibold  text-white'>&#62;&#62; Efficiency: ${parsed.data.efficiency_index}</h2>`
+                    let h5 = `<h2 className='reportt font-semibold  text-white'>&#62;&#62; Success: ${parsed.data.success_index}</h2>`
+                    let h6 = `<h2 className='reportt font-semibold  text-white'>&#62;&#62; Risk Score: ${parsed.data.risk_score}</h2>`
                     let div = document.querySelector(".report");
-                    div.innerHTML=h1+h2
+                    div.innerHTML=h1+h2+h3+h4+h5+h6;
                 }
 
             }catch(e){
@@ -178,11 +182,11 @@ function Addteam() {
                     </div>
 
 <div className="opertaion flex justify-between mb-4 mt-4">
-    <div onClick={handelanalyze} className=' rounded-md p-2 text-white md:w-[20%] w-[40%] bg-green-500' >Anlyze AI</div>
+    <div onClick={handelanalyze} className=' rounded-md p-2 text-white md:w-[70%] font-bold text-center w-[40%] bg-green-500 hover:shadow-md border border-green-500 hover:shadow-green-400 hover:text-green-600 hover:bg-black ' >Anlyze AI ֎🇦🇮</div>
     
     <button type="submit" onClick={handleSubmit} className=' rounded-md p-2 text-white md:w-[20%] w-[40%] bg-cyan-500'>Create this team</button>
 </div>
-    <div className="report bg-black rounded-lg p-4 mb-24 text-gray-400 md:w-[70%]">
+    <div className="report bg-black rounded-lg p-4 mb-24 text-white md:w-[70%]">
     <h1 className='reportf font-semibold '>&#62;&#62; py server fetch</h1>
         {/* <h1 className='reportf font-semibold text-white'>> status: {1? "Ok" : "Not ok"}...</h1>
         <h2 className='reportt font-semibold  text-white'>> Duration: {23/4+" Months estimated"}...</h2> */}

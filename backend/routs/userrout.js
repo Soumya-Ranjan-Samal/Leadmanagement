@@ -34,7 +34,7 @@ async function signUpValidate(req,res,next){
      }
 }
 
-Userrouter.post("/signup", AuthorizationAdmin, signUpValidate,wrapAsync(async (req,res,next)=>{
+Userrouter.post("/signup", AuthorizationAdmin, /*signUpValidate,*/wrapAsync(async (req,res,next)=>{
     console.log("signup");
     let {username, email, password, exp, pastprojects}=req.body;
     console.log(req.body)
